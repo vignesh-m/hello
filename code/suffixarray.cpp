@@ -75,13 +75,11 @@ long long getdistinctsubstring(){
 }
 void longestcommonsubstring(char* a,char* b){
 	int n1=strlen(a);
-	strcpy(S,strcat(a,b));
+	strcpy(S,strcat(strcat(a,"."),b));//. should not be in a or b
 	buildSA();
 	buildLCP();
 	int max=-1,index=-1;
 	for(int i=0;i<N-1;i++){
-		if((sa[i]<n1)&&(sa[i+1]<n1)) continue;
-		if((sa[i]>=n1)&&(sa[i+1]>=n1)) continue;
 		if(lcp[i]>max){
 			max=lcp[i];
 			index=sa[i];
