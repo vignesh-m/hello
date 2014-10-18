@@ -96,6 +96,7 @@ bool isprime(int n){
 double trianglearea(int x1,int x2,int y1,int y2,int z1,int z2){
 	return fabs((x1*(y2-z2)+y1*(z2-x2)+z1*(x2-y2))/2);
 }
+//O(sqtr(n)*?logn) for first k primes.
 int sieve[1000000];
 void primegen(int n){
 	for(int i=0;i<n;i++) sieve[i]=1;
@@ -105,5 +106,23 @@ void primegen(int n){
 			for(int j=2*i;j*j<n;j+=i)
 				sieve[j]=0;
 	}
+}
+//O(sqrt(x)) for euler totient by factorising
+long long int phi(long long x)
+ {
+   long long int ret = 1,i,pow;
+   for (i = 2; x != 1; i++) 
+   {
+     pow = 1;
+     if(i>sqrt(x))break;
+     while (!(x%i)) 
+     {
+       x /= i;
+       pow *= i;
+     }
+     ret *= (pow - (pow/i));
+    }
+    if(x!=1)ret*=(x-1);
+    return ret;
 }
 int main(){;}
